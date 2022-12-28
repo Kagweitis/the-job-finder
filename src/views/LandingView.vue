@@ -4,7 +4,7 @@
         <p>Enjoy the process and best of luck!</p>
         <div class="container">
             <div id="register-panel">
-                <h1>Create Account</h1>
+                <h2>Create Account</h2>
                 <div class="social-container">
 				    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
@@ -35,7 +35,7 @@
                 </form>
             </div>
             <div id="login-panel">
-                <h1>Welcome Back!</h1>
+                <h2>Welcome Back!</h2>
                 <form @submit.prevent="onSubmit">
                     <label>
                         Email:
@@ -71,14 +71,7 @@ const onSubmit = () => {
 </script>
 
 <style>
-.container{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    background-color: red;
-    min-width: 100vh;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 grey;
-}
+
 .landing-page{
     /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
     background-color: white;
@@ -88,14 +81,25 @@ const onSubmit = () => {
     justify-content: center;
 }
 
-.right-pane{
-   text-align: center;
-    color: aliceblue;
+.container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: red;
+    min-width: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 grey;
+    justify-content: space-between;
 }
 
-.left-pane{
+#login-panel{
+   text-align: center;
+   background-color: aliceblue;
+}
+
+#register-panel{
     justify-items: center;
     align-items: center;
+    padding-bottom: 10vh;
 }
 
 form{
@@ -104,6 +108,7 @@ form{
     justify-content: center;
     align-self: center;
     display: flex;
+    text-align: left;
     flex-direction: column;
     background-color: transparent;
     border-radius: 8px;
@@ -111,7 +116,6 @@ form{
     color: aliceblue;
     padding: 8vh;
     height: 100%;
-    background-color: blue;
 }
 
 
@@ -131,14 +135,19 @@ input
     outline:invert;
 }
 
+label{
+    align-content: flex-start;
+}
+
 button{
     background-color: rgba(0,0,0,0.4);
     color: aliceblue;
     height: 8vh;
-    width: 100%;
+    width: 80%;
     border-radius: 8px;
     font-weight: bold;
     text-transform: uppercase;
 	transition: transform 80ms ease-in;
+    align-self: center;
 }
 </style>
