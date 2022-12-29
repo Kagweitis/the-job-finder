@@ -3,35 +3,7 @@
         <h2 style="padding-top: 0;">Welcome to Job Finder!</h2>
         <p>Enjoy the process and best of luck!</p>
         <div class="container">
-            <div id="register-panel">
-                <h2>Create Account</h2>
-                <div class="social-container">
-                    <i class="fa-brands fa-google fa-2x"></i>
-                    <i class="fa-brands fa-linkedin fa-2x"></i>
-                    <i class="fa-brands fa-facebook fa-2x"></i>
-                </div>
-                <p>or sign up with one of these options</p>
-                <form @submit.prevent="onSubmit">
-                        <label>
-                            Name:
-                        <input v-model="name" type="text" />
-                        </label>
-                        <label>
-                            Email:
-                        <input v-model="email" type="email" />
-                        </label>
-                        <label>
-                            Password:
-                        <input v-model="password" type="password" />
-                        </label>
-                    <label>
-                        Confirm Password:
-                    <input v-model="password" type="password" />
-                    </label>
-                    <br />
-                    <button type="submit">Register</button>
-                </form>
-            </div>
+           <template v-if="showSignInForm">
             <div id="login-panel">
                 <h2>Welcome Back!</h2>
                 <div class="social-container">
@@ -39,7 +11,7 @@
                     <i class="fa-brands fa-linkedin fa-2x"></i>
                     <i class="fa-brands fa-facebook fa-2x"></i>
                 </div>
-                <p>or sign in with one of these options</p>
+                <p>Or sign in with one of these options</p>
                 <form @submit.prevent="onSubmit">
                     <label>
                         Email:
@@ -54,12 +26,47 @@
                     <button type="submit">Sign in</button>
                 </form>
             </div>
+           </template>
+           <template v-else>
+                <div id="register-panel">
+                    <h2>Create Account</h2>
+                    <div class="social-container">
+                        <i class="fa-brands fa-google fa-2x"></i>
+                        <i class="fa-brands fa-linkedin fa-2x"></i>
+                         <i class="fa-brands fa-facebook fa-2x"></i>
+                     </div>
+                    <p>Or sign up with one of these options</p>
+                    <form @submit.prevent="onSubmit">
+                            <label>
+                                Name:
+                            <input v-model="name" type="text" />
+                            </label>
+                            <label>
+                                Email:
+                            <input v-model="email" type="email" />
+                            </label>
+                            <label>
+                                Password:
+                            <input v-model="password" type="password" />
+                            </label>
+                        <label>
+                            Confirm Password:
+                        <input v-model="password" type="password" />
+                        </label>
+                        <br />
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </template>
         </div>
+        <button @click="showSignInForm = !showSignInForm">
+      {{ showSignInForm ? 'Switch to Register Form' : 'Switch to Sign In Form' }}
+    </button>
     </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 
 const details = reactive({
@@ -68,6 +75,9 @@ const details = reactive({
     password: '',
 })
 
+const showSignInForm = ref(true)
+
+
 const onSubmit = () => {
     console.log(details)
 }
@@ -75,7 +85,7 @@ const onSubmit = () => {
 </script>
 
 <style scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); 
 body{
     display: flex;
     justify-content: center;
@@ -104,6 +114,7 @@ body{
 h2{
     text-align: center;
     padding-top: 5vh;
+    font-style: oblique;
 }
 
 p{
@@ -117,7 +128,7 @@ label{
 .container{
     display: grid;
     grid-template-columns: 50% 50%;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background-color: red;
     height: 70vh;
     max-width: 140vh;
@@ -143,7 +154,7 @@ label{
 
 form{
     /* padding-left: 10vh; */
-    font: 'Montserrat', sans-serif;
+    font: 'Quicksand', sans-serif;
     justify-content: center;
     align-self: center;
     display: flex;
