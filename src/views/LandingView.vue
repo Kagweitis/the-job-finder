@@ -1,15 +1,16 @@
 <template>
     <div class="landing-page">
-        <h2>Welcome to Job Finder!</h2>
+        <h2 style="padding-top: 0;">Welcome to Job Finder!</h2>
         <p>Enjoy the process and best of luck!</p>
         <div class="container">
             <div id="register-panel">
                 <h2>Create Account</h2>
                 <div class="social-container">
-                    <i class="fa-brands fa-google fa-3x"></i>
-                    <i class="fa-brands fa-linkedin fa-3x"></i>
-                    <i class="fa-brands fa-facebook fa-3x"></i>
+                    <i class="fa-brands fa-google fa-2x"></i>
+                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
                 </div>
+                <p>or sign up with one of these options</p>
                 <form @submit.prevent="onSubmit">
                         <label>
                             Name:
@@ -34,10 +35,11 @@
             <div id="login-panel">
                 <h2>Welcome Back!</h2>
                 <div class="social-container">
-                    <i class="fa-brands fa-google fa-3x"></i>
-                    <i class="fa-brands fa-linkedin fa-3x"></i>
-                    <i class="fa-brands fa-facebook fa-3x"></i>
+                    <i class="fa-brands fa-google fa-2x"></i>
+                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
                 </div>
+                <p>or sign in with one of these options</p>
                 <form @submit.prevent="onSubmit">
                     <label>
                         Email:
@@ -72,7 +74,7 @@ const onSubmit = () => {
 
 </script>
 
-<style>
+<style scoped>
 
 body{
     display: flex;
@@ -101,6 +103,15 @@ body{
 
 h2{
     text-align: center;
+    padding-top: 5vh;
+}
+
+p{
+    text-align: center;
+}
+
+label{
+    font-size: smaller4;
 }
 
 .container{
@@ -108,7 +119,7 @@ h2{
     grid-template-columns: 50% 50%;
     font-family: 'Montserrat', sans-serif;
     background-color: red;
-    height: 80vh;
+    height: 70vh;
     max-width: 140vh;
     min-height: auto;
     border-radius: 10px;
@@ -119,7 +130,7 @@ h2{
 #login-panel{
    text-align: left;
    background-color: aliceblue;
-   max-height: 80vh;
+   max-height: 70vh;
 }
 
 #register-panel{
@@ -142,12 +153,13 @@ form{
     overflow: hidden;
     color:black;
     padding: 8vh;
-    height: 80%;
+    height: fit-content;
+    padding-top: 0px;
 }
 
 .social-container{
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 20% 20% 20%;
     cursor: pointer;
     align-items: center;
     justify-content: center;
@@ -161,8 +173,9 @@ input
     background-color: whitesmoke;
 	border: none;
 	padding: 12px 15px;
-	margin: 8px 0;
+	margin: 0;
 	width: 100%;
+    height: min-content;
     /* background: transparent; */
     /* border: none; */
     outline:invert;
@@ -175,7 +188,7 @@ label{
 button{
     background-color: rgba(0,0,0,0.4);
     color: aliceblue;
-    height: 8vh;
+    height: 6vh;
     width: 80%;
     border-radius: 8px;
     font-weight: bold;
