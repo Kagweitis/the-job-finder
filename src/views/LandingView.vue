@@ -6,8 +6,10 @@
             <div id="register-panel">
                 <h2>Create Account</h2>
                 <div class="social-container">
-
-			    </div>
+                    <i class="fa-brands fa-google fa-3x"></i>
+                    <i class="fa-brands fa-linkedin fa-3x"></i>
+                    <i class="fa-brands fa-facebook fa-3x"></i>
+                </div>
                 <form @submit.prevent="onSubmit">
                         <label>
                             Name:
@@ -31,6 +33,11 @@
             </div>
             <div id="login-panel">
                 <h2>Welcome Back!</h2>
+                <div class="social-container">
+                    <i class="fa-brands fa-google fa-3x"></i>
+                    <i class="fa-brands fa-linkedin fa-3x"></i>
+                    <i class="fa-brands fa-facebook fa-3x"></i>
+                </div>
                 <form @submit.prevent="onSubmit">
                     <label>
                         Email:
@@ -138,7 +145,13 @@ form{
     height: 80%;
 }
 
-
+.social-container{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
 br{
     color: white;
 }
@@ -173,3 +186,4 @@ button{
 
 
 </style>
+
