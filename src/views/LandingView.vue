@@ -6,31 +6,26 @@
             <div id="register-panel">
                 <h2>Create Account</h2>
                 <div class="social-container">
-				    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+
 			    </div>
                 <form @submit.prevent="onSubmit">
                         <label>
                             Name:
                         <input v-model="name" type="text" />
                         </label>
-                        <br />
                         <label>
                             Email:
                         <input v-model="email" type="email" />
                         </label>
-                        <br />
                         <label>
                             Password:
                         <input v-model="password" type="password" />
                         </label>
-                        <br />
                     <label>
                         Confirm Password:
                     <input v-model="password" type="password" />
                     </label>
-                        <br />
+                    <br />
                     <button type="submit">Register</button>
                 </form>
             </div>
@@ -72,50 +67,75 @@ const onSubmit = () => {
 
 <style>
 
-.landing-page{
+body{
+    display: flex;
+    justify-content: center;
+}
+ .landing-page{
     /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
+    font: 'Montserrat';
     background-color: white;
     background-size: cover;
     min-height: 98vh;
-    align-content: center;
+    align-content: center; 
     justify-content: center;
+} 
+
+/* body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	margin: -20px 0 50px;
+    text-align: left;
+} */
+
+h2{
+    text-align: center;
 }
 
 .container{
     display: grid;
     grid-template-columns: 50% 50%;
+    font-family: 'Montserrat', sans-serif;
     background-color: red;
-    min-width: 100vh;
+    height: 80vh;
+    max-width: 140vh;
+    min-height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 grey;
     justify-content: space-between;
 }
 
 #login-panel{
-   text-align: center;
+   text-align: left;
    background-color: aliceblue;
+   max-height: 80vh;
 }
 
 #register-panel{
     justify-items: center;
     align-items: center;
+    text-align: end;
     padding-bottom: 10vh;
+    max-height: 80vh;
 }
 
 form{
     /* padding-left: 10vh; */
-    font: 'Montserrat';
+    font: 'Montserrat', sans-serif;
     justify-content: center;
     align-self: center;
     display: flex;
     text-align: left;
     flex-direction: column;
     background-color: transparent;
-    border-radius: 8px;
     overflow: hidden;
-    color: aliceblue;
+    color:black;
     padding: 8vh;
-    height: 100%;
+    height: 80%;
 }
 
 
@@ -150,4 +170,6 @@ button{
 	transition: transform 80ms ease-in;
     align-self: center;
 }
+
+
 </style>
