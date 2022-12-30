@@ -2,10 +2,12 @@
     <div class="landing-page">
         <h2 style="padding-top: 0;">Welcome to Job Finder!</h2>
         <p>Enjoy the process and best of luck!</p>
-        <div class="container">
-           <template v-if="showSignInForm">
-            <div id="login-panel">
-                <h2>Welcome Back!</h2>
+       
+    <div class="container">
+        <template v-if="showSignInForm" :style="loginStyle">
+            <transition> 
+            <div id="login-panel" >
+                <h2 style="margin-top: 5vh;">Welcome Back!</h2>
                 <div class="social-container">
                     <i class="fa-brands fa-google fa-2x"></i>
                     <i class="fa-brands fa-linkedin fa-2x"></i>
@@ -19,23 +21,36 @@
                     </label>
                     <br />
                     <label>
-                        Password:
-                    <input v-model="password" type="password" />
+                    Password:
+                    <div class="password-container">
+                        <!-- <input v-model="password" type="password" :type="passwordType"/> -->
+                        <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                        <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
+                    </div>
                     </label>
                     <br />
                     <button type="submit">Sign in</button>
+                   
                 </form>
-            </div>
-           </template>
-           <template v-else>
-                <div id="register-panel">
-                    <h2>Create Account</h2>
-                    <div class="social-container">
-                        <i class="fa-brands fa-google fa-2x"></i>
-                        <i class="fa-brands fa-linkedin fa-2x"></i>
-                         <i class="fa-brands fa-facebook fa-2x"></i>
-                     </div>
-                    <p>Or sign up with one of these options</p>
+                </div>
+            </transition>
+                    <div id="login-panel-info">
+                    <h1>Nice to see you again!</h1>
+                    <h2>Lets continue our journey</h2>
+                    <button @click="showSignInForm = !showSignInForm">
+                    {{ showSignInForm ? 'Register' : 'Sign In' }}
+                    </button>
+                </div>
+                </template>
+                <template v-else :style="registerStyle">
+                    <div id="register-panel">
+                        <h2 style="margin-top: 4vh;">Create Account</h2>
+                        <div class="social-container">
+                            <i class="fa-brands fa-google fa-2x"></i>
+                            <i class="fa-brands fa-linkedin fa-2x"></i>
+                            <i class="fa-brands fa-facebook fa-2x"></i>
+                        </div>
+                        <p >Or sign up with one of the above</p>
                     <form @submit.prevent="onSubmit">
                             <label>
                                 Name:
@@ -46,27 +61,42 @@
                             <input v-model="email" type="email" />
                             </label>
                             <label>
-                                Password:
-                            <input v-model="password" type="password" />
+                            Password:
+                            <div class="password-container">
+                                <!-- <input v-model="password" type="password" :type="passwordType"/>
+                                <i class="fas fa-eye" @click="togglePasswordVisibility"></i> -->
+                                <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                                <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
+                            </div>
                             </label>
                         <label>
                             Confirm Password:
-                        <input v-model="password" type="password" />
+                            <div class="password-container">
+                                <!-- <input v-model="password" type="password" :type="passwordType"/>
+                                <i class="fas fa-eye" @click="togglePasswordVisibility"></i> -->
+                                <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                                <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
+                            </div>
                         </label>
                         <br />
                         <button type="submit">Register</button>
                     </form>
                 </div>
-            </template>
+                <div class="register-panel-info">
+                    <h1>Hello there!</h1>
+                    <h2>We're glad you chose us</h2>
+                     <p>Lets get started!</p>
+                    <button @click="showSignInForm = !showSignInForm">
+                    {{ showSignInForm ? 'Register' : 'Sign In' }}
+                    </button>
+                </div>
+                 </template>
+            </div>
         </div>
-        <button @click="showSignInForm = !showSignInForm">
-      {{ showSignInForm ? 'Switch to Register Form' : 'Switch to Sign In Form' }}
-    </button>
-    </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 
 
 const details = reactive({
@@ -75,8 +105,33 @@ const details = reactive({
     password: '',
 })
 
+const passwordType = ref('password');
+
+
+function togglePasswordVisibility() {
+      passwordType.value = passwordType.value === 'password' ? 'text' : 'password';
+      console.log(passwordType.value);
+    }
+
 const showSignInForm = ref(true)
 
+const showPassword = ref(false)
+
+const loginStyle = computed(() => {
+      return {
+        position: 'absolute',
+        left: showSignInForm.value ? 0 : '100%',
+        transition: 'all .3s'
+      }
+    });
+
+const registerStyle = computed(() => {
+      return {
+        position: 'absolute',
+        left: showSignInForm.value ? '-100%' : 0,
+        transition: 'all .3s'
+      }
+    });
 
 const onSubmit = () => {
     console.log(details)
@@ -86,19 +141,41 @@ const onSubmit = () => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); 
-body{
-    display: flex;
-    justify-content: center;
-}
+
  .landing-page{
     /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
-    font: 'Montserrat';
+    font: 'Quicksand';
     background-color: white;
     background-size: cover;
     min-height: 98vh;
     align-content: center; 
     justify-content: center;
 } 
+
+.v-enter-from {
+  opacity: 0
+}
+.v-enter-to {
+  opacity: 1
+}
+.v-enter-active {
+  transition: opacity 2s ease
+}
+
+.slide-up-enter, .slide-up-leave-to {
+    transform: translateY(100%);
+  }
+  .slide-up-enter-to, .slide-up-leave {
+    transform: translateY(0%);
+  }
+
+   /* Fade transition */
+   .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-to, .fade-leave {
+    opacity: 1;
+  }
 
 /* body {
 	background: #f6f5f7;
@@ -115,6 +192,40 @@ h2{
     text-align: center;
     padding-top: 5vh;
     font-style: oblique;
+    margin-top: 0;
+}
+
+
+h1{
+    margin: 0;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#login-panel-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-panel-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
 
 p{
@@ -130,8 +241,9 @@ label{
     grid-template-columns: 50% 50%;
     font-family: 'Quicksand', sans-serif;
     background-color: red;
-    height: 70vh;
-    max-width: 140vh;
+    height: 73vh;
+    max-width: 160vh;
+    min-width: 130vh;
     min-height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 grey;
@@ -141,7 +253,7 @@ label{
 #login-panel{
    text-align: left;
    background-color: aliceblue;
-   max-height: 70vh;
+   max-height: 73vh;
 }
 
 #register-panel{
@@ -149,7 +261,8 @@ label{
     align-items: center;
     text-align: end;
     padding-bottom: 10vh;
-    max-height: 80vh;
+    max-height: 63vh;
+    background-color: aliceblue;
 }
 
 form{
@@ -204,7 +317,6 @@ button{
     border-radius: 8px;
     font-weight: bold;
     text-transform: uppercase;
-	transition: transform 80ms ease-in;
     align-self: center;
 }
 
