@@ -8,28 +8,28 @@
             <transition> 
             <div id="login-panel" >
                 <h2 style="margin-top: 5vh;">Welcome Back!</h2>
-                <div class="social-container">
+                <div class="social-container-login">
                     <i class="fa-brands fa-google fa-2x"></i>
                     <i class="fa-brands fa-linkedin fa-2x"></i>
-                    <i class="fa-brands fa-facebook fa-2x"></i>
-                </div>
+                    <i class="fa-brands fa-github fa-2x" ></i>                </div>
                 <p>Or sign in with one of these options</p>
-                <form @submit.prevent="onSubmit">
+                <form @submit.prevent="loginUser">
                     <label>
                         Email:
-                        <input v-model="email" type="email" />
+                        <input v-model="loginDetails.email" type="email" />
                     </label>
                     <br />
                     <label>
                     Password:
                     <div class="password-container">
                         <!-- <input v-model="password" type="password" :type="passwordType"/> -->
-                        <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                        <input v-model="loginDetails.password" :type="showPassword ? 'text' : 'password'">
                         <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
                     </div>
                     </label>
                     <br />
-                    <button type="submit">Sign in</button>
+                    <button type="submit" 
+                    value="login">Sign in</button>
                    
                 </form>
                 </div>
@@ -37,6 +37,7 @@
                     <div id="login-panel-info">
                     <h1>Nice to see you again!</h1>
                     <h2>Lets continue our journey</h2>
+                    <p>don't have an account? click Register</p>
                     <button @click="showSignInForm = !showSignInForm">
                     {{ showSignInForm ? 'Register' : 'Sign In' }}
                     </button>
@@ -44,28 +45,27 @@
                 </template>
                 <template v-else :style="registerStyle">
                     <div id="register-panel">
-                        <h2 style="margin-top: 4vh;">Create Account</h2>
-                        <div class="social-container">
-                            <i class="fa-brands fa-google fa-2x"></i>
+                        <h2 style="margin-top: 4vh; margin-bottom: 4vh;">Create Account</h2>
+                        <div class="social-container-register">
+                            <i class="fa-brands fa-google fa-2x" ></i>
                             <i class="fa-brands fa-linkedin fa-2x"></i>
-                            <i class="fa-brands fa-facebook fa-2x"></i>
-                        </div>
+                            <i class="fa-brands fa-github fa-2x"></i>                        </div>
                         <p >Or sign up with one of the above</p>
-                    <form @submit.prevent="onSubmit">
+                    <form @submit.prevent="registerUser">
                             <label>
                                 Name:
-                            <input v-model="name" type="text" />
+                            <input v-model="registrationDetails.name" type="text" />
                             </label>
                             <label>
                                 Email:
-                            <input v-model="email" type="email" />
+                            <input v-model="registrationDetails.email" type="email" />
                             </label>
                             <label>
                             Password:
                             <div class="password-container">
                                 <!-- <input v-model="password" type="password" :type="passwordType"/>
                                 <i class="fas fa-eye" @click="togglePasswordVisibility"></i> -->
-                                <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                                <input v-model="registrationDetails.password" :type="showPassword ? 'text' : 'password'">
                                 <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
                             </div>
                             </label>
@@ -79,13 +79,15 @@
                             </div>
                         </label>
                         <br />
-                        <button type="submit">Register</button>
+                        <button type="submit" 
+                        value="register">Register</button>
                     </form>
                 </div>
                 <div class="register-panel-info">
                     <h1>Hello there!</h1>
                     <h2>We're glad you chose us</h2>
                      <p>Lets get started!</p>
+                     <p>have an account? click Sign In</p>
                     <button @click="showSignInForm = !showSignInForm">
                     {{ showSignInForm ? 'Register' : 'Sign In' }}
                     </button>
@@ -97,13 +99,28 @@
 
 <script setup>
 import { reactive, ref, computed } from 'vue';
+import { useStore } from 'vuex';
 
-
-const details = reactive({
+const registrationDetails = reactive({
     name: '',
     email: '',
     password: '',
 })
+
+const loginDetails = reactive({
+    email: '',
+    password: '',
+})
+
+const store = useStore()
+
+const loginUser = () => {
+    store.dispatch('login', loginDetails.value)
+}
+
+const registerUser = () => {
+    store.dispatch('register', registrationDetails.value)
+}
 
 const passwordType = ref('password');
 
@@ -116,6 +133,8 @@ function togglePasswordVisibility() {
 const showSignInForm = ref(true)
 
 const showPassword = ref(false)
+
+
 
 const loginStyle = computed(() => {
       return {
@@ -133,9 +152,7 @@ const registerStyle = computed(() => {
       }
     });
 
-const onSubmit = () => {
-    console.log(details)
-}
+
 
 </script>
 
@@ -281,13 +298,28 @@ form{
     padding-top: 0px;
 }
 
-.social-container{
+.social-container-register{
     display: grid;
     grid-template-columns: 20% 20% 20%;
+    padding-right: 4vh;
     cursor: pointer;
     align-items: center;
     justify-content: center;
 }
+
+.social-container-login{
+    display: flex;
+    flex-direction: row;
+    padding-right: 3vh;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+i{
+    margin-left: 8vh;
+}
+
 br{
     color: white;
 }
