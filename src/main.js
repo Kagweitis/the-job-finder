@@ -3,7 +3,8 @@ import './style.css'
 import App from './App.vue'
 import router from './routes'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import vue3GoogleLogin from 'vue3-google-login'
+import { createStore } from 'vuex';
+
 
 
 /* import font awesome icon component */
@@ -18,8 +19,6 @@ library.add(faUserSecret)
 
 
 createApp(App)
-.use(router, vue3GoogleLogin, {
-    clientId: 'YOUR_GOOGLE_CLIENT_ID'
-  })
+.use(router)
 .component('font-awesome-icon', FontAwesomeIcon)
 .mount('#app')

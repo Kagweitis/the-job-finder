@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import LandingView from "../views/LandingView.vue"
 
 const routes = [
   {
@@ -10,6 +11,13 @@ const routes = [
       requiresAuth: true
     }
   },
+
+  {
+    path: "/landing",
+    name: "landing",
+    component: LandingView
+  },
+
   {
     path: "/about",
     name: "about",

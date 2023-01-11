@@ -34,7 +34,7 @@ export default createStore({
                         alert("wrong password")
                         break;
                     default:
-                        alert(error.message)
+                        alert('something went wrong')
                         break;
                 }
             return
@@ -44,10 +44,37 @@ export default createStore({
             router.push('/home')
         },
         async register ({ commit }, details) {
+            const { name, email, password } = details
 
+            try {
+                await createUserWithEmailAndPassword (auth, email, password)
+            } catch (error) {
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                        alert("email in use")
+                        break;
+                    case 'auth/invalid-email':
+                        alert("invalid email")
+                        break;
+                    case 'auth/weak-password':
+                        alert("weak password")
+                        break;
+                    default:
+                        alert('something went wrong')
+                        break;
+                }
+            return
+            }
+
+            commit('SET_USER', auth.currentUser)
+            router.push('/home')
         },
         async logout ({ commit }) {
+            await signout(auth)
 
+            commit('CLEAR_USER')
+
+            router.push('/Landing')
         }
     }
 })

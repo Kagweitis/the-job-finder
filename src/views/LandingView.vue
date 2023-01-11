@@ -107,20 +107,22 @@ const registrationDetails = reactive({
     password: '',
 })
 
+    const store = useStore()
+    const loginUser = () => {   
+        store.dispatch('login', loginDetails.value)
+    }
+
+    const registerUser = () => {
+        store.dispatch('register', registrationDetails.value)
+    }
+
+
 const loginDetails = reactive({
     email: '',
     password: '',
 })
 
-const store = useStore()
 
-const loginUser = () => {
-    store.dispatch('login', loginDetails.value)
-}
-
-const registerUser = () => {
-    store.dispatch('register', registrationDetails.value)
-}
 
 const passwordType = ref('password');
 
