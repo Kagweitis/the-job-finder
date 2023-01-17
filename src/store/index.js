@@ -76,7 +76,7 @@ export default createStore({
 
             commit('CLEAR_USER')
 
-            router.push('/Landing')
+            router.push('/')
         }
     }
 })
