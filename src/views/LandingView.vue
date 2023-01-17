@@ -114,10 +114,11 @@ const store = useStore()
 const router = useRouter()
 
     const loginUser = () => {   
-        store.dispatch('login', loginDetails).then(() => {
-            console.log('result returned')
-            router.push('/home')
-        })
+        store.dispatch('login', loginDetails)
+        // .then(() => {
+        //     console.log('result returned')
+        //     router.push('/home')
+        // })
     }
 
     const registerUser = () => {
