@@ -11,7 +11,8 @@
                 <div class="social-container-login">
                     <i class="fa-brands fa-google fa-2x"></i>
                     <i class="fa-brands fa-linkedin fa-2x"></i>
-                    <i class="fa-brands fa-github fa-2x" ></i>                </div>
+                    <i class="fa-brands fa-github fa-2x" ></i>               
+                </div>
                 <p>Or sign in with one of these options</p>
                 <form @submit.prevent="loginUser">
                     <label>
@@ -100,6 +101,7 @@
 <script setup>
 import { reactive, ref, computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 const registrationDetails = reactive({
     name: '',
@@ -107,13 +109,20 @@ const registrationDetails = reactive({
     password: '',
 })
 
-    const store = useStore()
+const store = useStore()
+
+const router = useRouter()
+
     const loginUser = () => {   
-        store.dispatch('login', loginDetails.value)
+        store.dispatch('login', loginDetails).then(() => {
+            console.log('result returned')
+            router.push('/home')
+        })
     }
 
     const registerUser = () => {
-        store.dispatch('register', registrationDetails.value)
+        console.log(registrationDetails.value);
+        store.dispatch('register', registrationDetails)
     }
 
 

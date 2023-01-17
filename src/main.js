@@ -3,7 +3,12 @@ import './style.css'
 import App from './App.vue'
 import router from './routes'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { createStore } from 'vuex';
+import store from './store/index.js'
+// import { createStore } from 'vuex';
+import { useStore } from 'vuex';
+import Vuex from 'vuex'
+
+
 
 
 
@@ -20,5 +25,7 @@ library.add(faUserSecret)
 
 createApp(App)
 .use(router)
+.use(Vuex)
+.use(store)
 .component('font-awesome-icon', FontAwesomeIcon)
 .mount('#app')

@@ -4,8 +4,9 @@ import { auth } from "../firebase"
 import { 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signout
+    signOut
 } from 'firebase/auth'
+
 
 export default createStore({
     state: {
@@ -22,7 +23,6 @@ export default createStore({
     actions: {
         async login ({ commit }, details) {
             const { email, password } = details
-
             try {
                 await signInWithEmailAndPassword (auth, email, password)
             } catch (error) {
@@ -41,7 +41,9 @@ export default createStore({
             }
 
             commit('SET_USER', auth.currentUser)
+            console.log('get ready to route!');
             router.push('/home')
+            return
         },
         async register ({ commit }, details) {
             const { name, email, password } = details
@@ -70,7 +72,7 @@ export default createStore({
             router.push('/home')
         },
         async logout ({ commit }) {
-            await signout(auth)
+            await signOut(auth)
 
             commit('CLEAR_USER')
 

@@ -1,6 +1,7 @@
 <template>
   <div class="main-container">
-  <landingView  />
+  <!-- <landingView  /> -->
+  <RouterView/>
   </div>
 </template>
 
