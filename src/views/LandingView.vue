@@ -9,9 +9,9 @@
             <div id="login-panel" >
                 <h2 style="margin-top: 5vh;">Welcome Back!</h2>
                 <div class="social-container-login">
-                    <i class="fa-brands fa-google fa-2x"></i>
-                    <i class="fa-brands fa-linkedin fa-2x"></i>
-                    <i class="fa-brands fa-github fa-2x" ></i>               
+                    <i class="fa-brands fa-google fa-2x" @click="handleGoogleSignIn"></i>
+                    <i class="fa-brands fa-twitter fa-2x" @click="handleTwitterSignIn"></i>
+                    <i class="fa-brands fa-github fa-2x" @click="handleGithubSignIn"></i>               
                 </div>
                 <p>Or sign in with one of these options</p>
                 <form @submit.prevent="loginUser">
@@ -48,9 +48,10 @@
                     <div id="register-panel">
                         <h2 style="margin-top: 4vh; margin-bottom: 4vh;">Create Account</h2>
                         <div class="social-container-register">
-                            <i class="fa-brands fa-google fa-2x" ></i>
-                            <i class="fa-brands fa-linkedin fa-2x"></i>
-                            <i class="fa-brands fa-github fa-2x"></i>                        </div>
+                            <i class="fa-brands fa-google fa-2x" @click="handleGoogleSignIn"></i>
+                            <i class="fa-brands fa-twitter fa-2x" @click="handleTwitterSignIn"></i>
+                            <i class="fa-brands fa-github fa-2x" @click="handleGithubSignIn"></i>
+                        </div>
                         <p >Or sign up with one of the above</p>
                     <form @submit.prevent="registerUser">
                             <label>
@@ -101,7 +102,9 @@
 <script setup>
 import { reactive, ref, computed } from 'vue';
 import { useStore } from 'vuex';
+import { getAuth, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { useRouter } from 'vue-router';
+
 
 const registrationDetails = reactive({
     name: '',
@@ -113,12 +116,16 @@ const store = useStore()
 
 const router = useRouter()
 
+const providerTwitter = new TwitterAuthProvider();
+
+const providerGit = new GithubAuthProvider();
+
+const provider = new GoogleAuthProvider();
+
+const auth = getAuth();
+
     const loginUser = () => {   
         store.dispatch('login', loginDetails)
-        // .then(() => {
-        //     console.log('result returned')
-        //     router.push('/home')
-        // })
     }
 
     const registerUser = () => {
@@ -146,23 +153,82 @@ const showSignInForm = ref(true)
 
 const showPassword = ref(false)
 
+const handleGoogleSignIn = () => {
+    console.log('google sign in');
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        console.log(result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            GoogleAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            console.log(user.displayName);
+            // provide('userName', user.displayName)
+            router.push('/home')
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+}
 
+const handleTwitterSignIn = () => {
+    console.log('twitter');
+    signInWithPopup(auth, providerTwitter)
+    .then((result) => {
+        console.log(result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            TwitterAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            console.log(user.displayName);
+            // provide('userName', user.displayName)
+            router.push('/home')
+            // ...
+        }).catch((error) => {
+            alert(error)
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
 
-const loginStyle = computed(() => {
-      return {
-        position: 'absolute',
-        left: showSignInForm.value ? 0 : '100%',
-        transition: 'all .3s'
-      }
-    });
+}
 
-const registerStyle = computed(() => {
-      return {
-        position: 'absolute',
-        left: showSignInForm.value ? '-100%' : 0,
-        transition: 'all .3s'
-      }
-    });
+const handleGithubSignIn = () => {
+    console.log('Git');
+    signInWithPopup(auth, providerGit)
+    .then((result) => {
+        console.log(result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            GithubAuthProvider.credentialFromResult(result);
+            const user = result.user;
+            console.log(user.displayName);
+            // provide('userName', user.displayName)
+            router.push('/home')
+            // ...
+        }).catch((error) => {
+            alert(error)
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+
+}
+
 
 
 
