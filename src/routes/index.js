@@ -4,18 +4,28 @@ import LandingView from "../views/LandingView.vue"
 const routes = [
   {
     path: "/home",
-    name: "home",
     component: () => 
-      import("../views/HomeView.vue"),
-    meta: {
-      requiresAuth: true
-    }
+      import("../layouts/HomeLayout.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // },
+    children: [
+      { path: '', name: 'homepage', component: () => import('../views/HomeView.vue') }
+    ]
   },
 
   {
     path: "/",
-    name: "landing",
-    component: LandingView
+    component: () => 
+      import('../layouts/Registration.vue'),
+
+    children: [
+      { 
+        path: '',
+        name: 'signUp',
+        component: LandingView
+      }
+    ]
   },
 
   {

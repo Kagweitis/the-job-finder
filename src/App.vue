@@ -6,7 +6,6 @@
 </template>
 
 <script setup> 
-import LandingView from './views/LandingView.vue';
 
 
 
@@ -17,9 +16,9 @@ import LandingView from './views/LandingView.vue';
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); 
 .main-container{
   padding: 0%;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   font-family: 'Quicksand', sans-serif;
 }
 

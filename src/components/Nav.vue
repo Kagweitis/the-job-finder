@@ -1,18 +1,42 @@
 <template>
-  <div class="nav">
-    <div class="logo">
-      <i src="../assets/Finder-1.png" alt="logo here" style="height: 100px; width: 100px;"></i>
-    </div>
+  <div id="navbar">
+      <nav >
+          <div id="logo">
+              <img src="../assets/Finder-red-clear1.png" alt="logo" style="height: 15em; width: 14em;">
+          </div>
+          <div id="nav-links">
+              <router-link to="/home">Home</router-link>
+              <router-link to="/jobs">Jobs</router-link>
+              <router-link to="/about">About</router-link>
+              <router-link to="/profile">Profile</router-link>
+
+          </div>
+          <RouterView />
+      </nav>
   </div>
+  
 </template>
 
-<script setup>
-
-
+<script>
 </script>
 
 <style scoped>
-.nav{
-  background-color: red;
+
+
+
+nav{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
+
+#nav-links{
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-column-gap: 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+
 </style>
