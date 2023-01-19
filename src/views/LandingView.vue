@@ -5,8 +5,7 @@
        
     <div class="container">
         <template v-if="showSignInForm" :style="loginStyle">
-            <transition> 
-            <div id="login-panel" >
+            <div id="login-panel" class= "animate__animated animate__slideInRight">
                 <h2 style="margin-top: 5vh;">Welcome Back!</h2>
                 <div class="social-container-login">
                     <i class="fa-brands fa-google fa-2x" @click="handleGoogleSignIn"></i>
@@ -14,7 +13,7 @@
                     <i class="fa-brands fa-github fa-2x" @click="handleGithubSignIn"></i>               
                 </div>
                 <p>Or sign in with one of these options</p>
-                <form @submit.prevent="loginUser">
+                <form @submit.prevent="loginUser" >
                     <label>
                         Email:
                         <input v-model="loginDetails.email" type="email" />
@@ -34,8 +33,7 @@
                    
                 </form>
                 </div>
-            </transition>
-                    <div id="login-panel-info">
+                <div id="login-panel-info" class= "animate__animated animate__slideInLeft">
                     <h1>Nice to see you again!</h1>
                     <h2>Lets continue our journey</h2>
                     <p>don't have an account? click Register</p>
@@ -44,20 +42,26 @@
                     </button>
                 </div>
                 </template>
-                <template v-else :style="registerStyle">
-                    <div id="register-panel">
+                <template v-else>
+                    <div id="register-panel-info" class= "animate__animated animate__slideInRight">
+                        <h1>Hello there!</h1>
+                        <h2>We're glad you chose us</h2>
+                        <p>Lets get started!</p>
+                        <p>have an account? click Sign In</p>
+                        <!-- <div class="animate__animated animate__bounce animate__faster">Example</div> -->
+                        <button @click="showSignInForm = !showSignInForm">
+                        {{ showSignInForm ? 'Register' : 'Sign In' }}
+                        </button>
+                    </div>
+                    <div id="register-panel" class= "animate__animated animate__slideInLeft">
                         <h2 style="margin-top: 4vh; margin-bottom: 4vh;">Create Account</h2>
                         <div class="social-container-register">
                             <i class="fa-brands fa-google fa-2x" @click="handleGoogleSignIn"></i>
                             <i class="fa-brands fa-twitter fa-2x" @click="handleTwitterSignIn"></i>
                             <i class="fa-brands fa-github fa-2x" @click="handleGithubSignIn"></i>
                         </div>
-                        <p >Or sign up with one of the above</p>
+                        <p >Or sign up with one of these options</p>
                     <form @submit.prevent="registerUser">
-                            <label>
-                                Name:
-                            <input v-model="registrationDetails.name" type="text" />
-                            </label>
                             <label>
                                 Email:
                             <input v-model="registrationDetails.email" type="email" />
@@ -85,15 +89,6 @@
                         value="register">Register</button>
                     </form>
                 </div>
-                <div class="register-panel-info">
-                    <h1>Hello there!</h1>
-                    <h2>We're glad you chose us</h2>
-                     <p>Lets get started!</p>
-                     <p>have an account? click Sign In</p>
-                    <button @click="showSignInForm = !showSignInForm">
-                    {{ showSignInForm ? 'Register' : 'Sign In' }}
-                    </button>
-                </div>
                  </template>
             </div>
         </div>
@@ -104,10 +99,10 @@ import { reactive, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { getAuth, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { useRouter } from 'vue-router';
+import 'animate.css';
 
 
 const registrationDetails = reactive({
-    name: '',
     email: '',
     password: '',
 })
@@ -240,37 +235,19 @@ const handleGithubSignIn = () => {
  .landing-page{
     /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
     font: 'Quicksand';
-    background-color: white;
+    /* background-color: white; */
     background-size: cover;
     min-height: 98vh;
     align-content: center; 
     justify-content: center;
 } 
 
-.v-enter-from {
-  opacity: 0
+/* .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
 }
-.v-enter-to {
-  opacity: 1
-}
-.v-enter-active {
-  transition: opacity 2s ease
-}
-
-.slide-up-enter, .slide-up-leave-to {
-    transform: translateY(100%);
-  }
-  .slide-up-enter-to, .slide-up-leave {
-    transform: translateY(0%);
-  }
-
-   /* Fade transition */
-   .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-  .fade-enter-to, .fade-leave {
-    opacity: 1;
-  }
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+} */
 
 /* body {
 	background: #f6f5f7;
@@ -313,14 +290,16 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: red;
 }
 
-.register-panel-info{
+#register-panel-info{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     text-align: center;
+    background-color: red;
 }
 
 p{
@@ -335,7 +314,7 @@ label{
     display: grid;
     grid-template-columns: 50% 50%;
     font-family: 'Quicksand', sans-serif;
-    background-color: red;
+    background: transparent;
     height: 73vh;
     max-width: 160vh;
     min-width: 130vh;
