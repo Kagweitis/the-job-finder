@@ -9,8 +9,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-image: url('../assets/Landing-back-mirrored.jpg');
+    /* background-color:#c4edfa; */
 }
 </style>
 
-<script>
+<script setup>
 </script>

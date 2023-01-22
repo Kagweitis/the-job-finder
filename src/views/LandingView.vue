@@ -1,7 +1,7 @@
 <template>
     <div class="landing-page">
         <h2 style="padding-top: 0;">Welcome to Job Finder!</h2>
-        <p>Enjoy the process and best of luck!</p>
+        <p >Enjoy the process and best of luck!</p>
        
     <div class="container">
         <template v-if="showSignInForm" :style="loginStyle">
@@ -235,7 +235,7 @@ const handleGithubSignIn = () => {
  .landing-page{
     /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
     font: 'Quicksand';
-    /* background-color: white; */
+    /* background-color: pink; */
     background-size: cover;
     min-height: 98vh;
     align-content: center; 
@@ -290,7 +290,7 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: red;
+    background-color: white;
 }
 
 #register-panel-info{
@@ -299,7 +299,7 @@ h1{
     justify-content: center;
     align-content: center;
     text-align: center;
-    background-color: red;
+    background-color: white;
 }
 
 p{
@@ -326,7 +326,7 @@ label{
 
 #login-panel{
    text-align: left;
-   background-color: aliceblue;
+   background-color: transparent;
    max-height: 73vh;
 }
 
