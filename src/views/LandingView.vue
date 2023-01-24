@@ -1,7 +1,5 @@
 <template>
     <div class="landing-page">
-        <h2 style="padding-top: 0;">Welcome to Job Finder!</h2>
-        <p >Enjoy the process and best of luck!</p>
        
     <div class="container">
         <template v-if="showSignInForm" :style="loginStyle">
@@ -33,7 +31,7 @@
                    
                 </form>
                 </div>
-                <div id="login-panel-info" class= "animate__animated animate__slideInLeft">
+                <div id="login-panel-info" class= "animate__animated animate__fadeInLeft">
                     <h1>Nice to see you again!</h1>
                     <h2>Lets continue our journey</h2>
                     <p>don't have an account? click Register</p>
@@ -43,17 +41,7 @@
                 </div>
                 </template>
                 <template v-else>
-                    <div id="register-panel-info" class= "animate__animated animate__slideInRight">
-                        <h1>Hello there!</h1>
-                        <h2>We're glad you chose us</h2>
-                        <p>Lets get started!</p>
-                        <p>have an account? click Sign In</p>
-                        <!-- <div class="animate__animated animate__bounce animate__faster">Example</div> -->
-                        <button @click="showSignInForm = !showSignInForm">
-                        {{ showSignInForm ? 'Register' : 'Sign In' }}
-                        </button>
-                    </div>
-                    <div id="register-panel" class= "animate__animated animate__slideInLeft">
+                    <div id="register-panel" class= "animate__animated animate__slideInRight">
                         <h2 style="margin-top: 4vh; margin-bottom: 4vh;">Create Account</h2>
                         <div class="social-container-register">
                             <i class="fa-brands fa-google fa-2x" @click="handleGoogleSignIn"></i>
@@ -88,6 +76,16 @@
                         <button type="submit" 
                         value="register">Register</button>
                     </form>
+                </div>
+                <div id="register-panel-info" class= "animate__animated animate__slideInLeft">
+                        <h1>Hello there!</h1>
+                        <h2>We're glad you chose us</h2>
+                        <p>Lets get started!</p>
+                        <p>have an account? click Sign In</p>
+                        <!-- <div class="animate__animated animate__bounce animate__faster">Example</div> -->
+                        <button @click="showSignInForm = !showSignInForm">
+                        {{ showSignInForm ? 'Register' : 'Sign In' }}
+                        </button>
                 </div>
                  </template>
             </div>
@@ -233,32 +231,13 @@ const handleGithubSignIn = () => {
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); 
 
  .landing-page{
-    /* background-image: url('../assets/imgs/dbz-dragon-ball-z-goku-dragon-ball-super-wallpaper-preview.jpg'); */
     font: 'Quicksand';
-    /* background-color: pink; */
+    display: flex;
     background-size: cover;
     min-height: 98vh;
-    align-content: center; 
+    align-items: center; 
     justify-content: center;
 } 
-
-/* .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-} */
-
-/* body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-    align-items: center;
-	flex-direction: column;
-	height: 100vh;
-	margin: -20px 0 50px;
-    text-align: left;
-} */
 
 h2{
     text-align: center;
@@ -328,6 +307,7 @@ label{
    text-align: left;
    background-color: transparent;
    max-height: 73vh;
+   color: white;
 }
 
 #register-panel{
@@ -336,7 +316,8 @@ label{
     text-align: end;
     padding-bottom: 10vh;
     max-height: 63vh;
-    background-color: aliceblue;
+    color: white;
+    background-color: transparent;
 }
 
 form{
@@ -349,7 +330,7 @@ form{
     flex-direction: column;
     background-color: transparent;
     overflow: hidden;
-    color:black;
+    color:white;
     padding: 8vh;
     height: fit-content;
     padding-top: 0px;
@@ -358,6 +339,7 @@ form{
 .social-container-register{
     display: grid;
     grid-template-columns: 20% 20% 20%;
+    color: white;
     padding-right: 4vh;
     cursor: pointer;
     align-items: center;
@@ -366,6 +348,7 @@ form{
 
 .social-container-login{
     display: flex;
+    color: white;
     flex-direction: row;
     padding-right: 3vh;
     cursor: pointer;
