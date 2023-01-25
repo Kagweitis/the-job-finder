@@ -57,8 +57,6 @@
                             <label>
                             Password:
                             <div class="password-container">
-                                <!-- <input v-model="password" type="password" :type="passwordType"/>
-                                <i class="fas fa-eye" @click="togglePasswordVisibility"></i> -->
                                 <input v-model="registrationDetails.password" :type="showPassword ? 'text' : 'password'">
                                 <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
                             </div>
@@ -261,6 +259,7 @@ h1{
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
+  color: black;
 }
 
 #login-panel-info{

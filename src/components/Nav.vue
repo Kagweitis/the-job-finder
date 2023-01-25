@@ -10,7 +10,6 @@
               <router-link to="/about">About</router-link>
               <router-link to="/profile">Profile</router-link>
           </div>
-          <RouterView />
       </nav>
   </div>
   
@@ -26,6 +25,11 @@
 nav{
   display: grid;
   grid-template-columns: 1fr 4fr;
+}
+
+#navbar{
+  align-items: center;
+  justify-content: center;
 }
 
 #nav-links{

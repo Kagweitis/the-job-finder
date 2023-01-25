@@ -1,6 +1,8 @@
 <template>
-    <div>
+    <div id="home-layout">
         <Nav />
+        <RouterView />
+
     </div>
 </template>
 
@@ -10,17 +12,12 @@ import Nav from '../components/Nav.vue';
 
 export default {
     components: {
-        Nav
-    }
+    Nav
+}
 }
 
 </script>
 
 <style scoped>
-
-
-
-
-
 
 </style>

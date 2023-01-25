@@ -2,13 +2,14 @@
   <div id="main">
     <h2>Welcome</h2>
     <div id="search-div">
+    <label> What
       <div class="occupationInput">
-        <label>What</label>
         <input type="text" placeholder="job" v-model="queryDetails.occupation" />
         <span class="fa-solid fa-briefcase"></span>
       </div>
+    </label>
+      <label >Where
       <div class="locationInput">
-        <label>Where</label>
         <input
           type="text"
           placeholder="location"
@@ -16,6 +17,7 @@
         />
         <i class="fa-sharp fa-solid fa-location-dot"></i>
       </div>
+      </label>
       <div>
         <button @click="search">Search</button>
       </div>
@@ -54,45 +56,45 @@ const handleSignOut = async () => {
 <style scoped>
 #main {
   display: flex;
+  flex-direction: column;
   font-family: 'Quicksand', sans-serif;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
 }
 
 #search-div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 30px;
   justify-content: center;
   align-items: center;
+  background-color: yellow;
   padding: 4vh;
-  background-color: red;
-}
-
-
-input[type="text"] {
-  width: 20rem;
-  height: 2rem;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-right: 2vh;
 }
 
 .occupationInput {
   position: relative;
-}
-
-.occupationInput i {
+} 
+.occupationInput .fa-briefcase{
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 10px;
   transform: translateY(-50%);
-}
+} 
 
-.fa-briefcase {
+
+.locationInput {
+  position: relative;
+} 
+.locationInput .fa-location-dot{
   position: absolute;
-  left: 10px;
   top: 50%;
+  right: 10px;
   transform: translateY(-50%);
-}
-/* input{
-    margin-left: 4vh;
-} */
+} 
+
+
+
 </style>
+
