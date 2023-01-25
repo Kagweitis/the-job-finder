@@ -1,15 +1,13 @@
 <template>
   <div id="main">
-    <h2>Welcome</h2>
     <div id="search-div">
-    <label> What
       <div class="occupationInput">
-        <input type="text" placeholder="job" v-model="queryDetails.occupation" />
+        <label> What </label>
+        <input type="text" placeholder="job title: Software engineer, nurse, mechanic" v-model="queryDetails.occupation" />
         <span class="fa-solid fa-briefcase"></span>
       </div>
-    </label>
-      <label >Where
       <div class="locationInput">
+        <label >Where </label>
         <input
           type="text"
           placeholder="location"
@@ -17,7 +15,6 @@
         />
         <i class="fa-sharp fa-solid fa-location-dot"></i>
       </div>
-      </label>
       <div>
         <button @click="search">Search</button>
       </div>
@@ -60,41 +57,67 @@ const handleSignOut = async () => {
   font-family: 'Quicksand', sans-serif;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  /* background-color: red; */
 }
 
 #search-div {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 30px;
+  grid-template-columns: 1fr 1fr 0.1fr;
+  grid-column-gap: 5vw;
   justify-content: center;
   align-items: center;
-  background-color: yellow;
+  /* background-color: yellow; */
   padding: 4vh;
 }
 
 .occupationInput {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 } 
 .occupationInput .fa-briefcase{
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
+  color: red;
+
 } 
 
 
 .locationInput {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  /* direction: rtl;  */
+  text-align: left;
+  
 } 
 .locationInput .fa-location-dot{
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
+  color: red;
 } 
 
+input
+{
+  border-radius: 5px;
+  background-color: whitesmoke;
+	border: none;
+	padding: 12px 8vw;
+	margin: 0;
+	width: 100%;
+  height: min-content;
+  outline:invert;
+}
 
+label{
+  margin-right: 5px;
+  align-self: center;
+}
 
 </style>
 
