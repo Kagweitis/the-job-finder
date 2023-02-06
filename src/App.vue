@@ -15,9 +15,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); 
 .main-container{
   padding: 0%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  height: 100vh;
+  display: flex;
+  width: 100vw;
   font-family: 'Quicksand', sans-serif;
 }
 

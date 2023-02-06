@@ -3,7 +3,7 @@
     <div id="search-div">
       <div class="occupationInput">
         <label> What </label>
-        <input type="text" placeholder="job title: Software engineer, nurse, mechanic" v-model="queryDetails.occupation" />
+        <input type="text" placeholder="job title, company, keywords" v-model="queryDetails.occupation" />
         <span class="fa-solid fa-briefcase"></span>
       </div>
       <div class="locationInput">
@@ -54,10 +54,11 @@ const handleSignOut = async () => {
 #main {
   display: flex;
   flex-direction: column;
+  flex: 1;
   font-family: 'Quicksand', sans-serif;
   align-items: center;
-  justify-content: center;
-  /* background-color: red; */
+  justify-content: flex-start;
+  padding-top: 0%;
 }
 
 #search-div {
@@ -66,7 +67,6 @@ const handleSignOut = async () => {
   grid-column-gap: 5vw;
   justify-content: center;
   align-items: center;
-  /* background-color: yellow; */
   padding: 4vh;
 }
 
@@ -112,12 +112,21 @@ input
 	width: 100%;
   height: min-content;
   outline:invert;
+  text-align: left;
 }
 
 label{
   margin-right: 5px;
   align-self: center;
 }
+
+/* input::placeholder { 
+   text-align: left;
+} */
+
+/* input[type="text"]::placeholder {        
+  text-align: left;
+} */
 
 </style>
 

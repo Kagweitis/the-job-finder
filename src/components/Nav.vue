@@ -2,7 +2,9 @@
   <div id="navbar">
       <nav >
           <div id="logo">
+            <router-link to="/home">
               <img src="../assets/Finder-red-clear1.png" alt="logo" style="height: 12em; width: 11em;">
+            </router-link>
           </div>
           <div id="nav-links">
               <router-link to="/home">Home</router-link>

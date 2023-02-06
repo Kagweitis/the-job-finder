@@ -66,13 +66,17 @@
                             <div class="password-container">
                                 <!-- <input v-model="password" type="password" :type="passwordType"/>
                                 <i class="fas fa-eye" @click="togglePasswordVisibility"></i> -->
-                                <input v-model="password" :type="showPassword ? 'text' : 'password'">
+                                <input v-model="registrationDetails.confirmPassword" :type="showPassword ? 'text' : 'password'">
                                 <i class="fas fa-eye" @click="showPassword = !showPassword"></i>
                             </div>
                         </label>
+                        <div style="color: red;"
+                         v-if="registrationDetails.password !== registrationDetails.confirmPassword"
+                         >Passwords don't match</div>
                         <br />
                         <button type="submit" 
-                        value="register">Register</button>
+                        value="register"
+                        :disabled="registrationDetails.password !== registrationDetails.confirmPassword">Register</button>
                     </form>
                 </div>
                 <div id="register-panel-info" class= "animate__animated animate__slideInLeft">
