@@ -25,7 +25,6 @@ footer{
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
-    /* background-color: lightblue; */
 }
 
 #indeed{

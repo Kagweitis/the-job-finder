@@ -19,6 +19,15 @@
         <button @click="search">Search</button>
       </div>
     </div>
+    <div id="job-cards">
+      <div id="feed">
+        <h2>Job Feed</h2>
+      </div>
+      <div id="details">
+        <h2>Details </h2>
+      </div>
+    </div>
+    
     <div>
       <button @click="handleSignOut">sign out</button>
     </div>
@@ -120,13 +129,25 @@ label{
   align-self: center;
 }
 
-/* input::placeholder { 
-   text-align: left;
-} */
+#job-cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  text-align: center;
+}
 
-/* input[type="text"]::placeholder {        
-  text-align: left;
-} */
+#feed{
+  box-shadow: 0 4px 8px 0 grey;
+  background-color: red;
+  border-radius: 10px;
+  width: 40vw;
+}
 
+#details{
+  box-shadow: 0 4px 8px 0 grey;
+  background-color: blue;
+  border-radius: 10px;
+  width: 40vw;
+}
 </style>
 
