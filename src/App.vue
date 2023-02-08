@@ -16,7 +16,7 @@
 .main-container{
   padding: 0%;
   height: 100vh;
-  display: flex;
+  /* display: flex; */
   width: 100vw;
   font-family: 'Quicksand', sans-serif;
 }
