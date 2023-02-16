@@ -92,7 +92,7 @@
 import { async } from "@firebase/util";
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { searchJobs } from "../services/jobSearch"
 
 const auth = getAuth();
@@ -104,9 +104,18 @@ const queryDetails = reactive({
   jobLocation: "",
 });
 
-const search = (queryDetails) => {
-  console.log("search", queryDetails);
-};
+const search = () => {
+  //we can pass queryDetails inside function searchJobs without passing it inside search as queryDetails is reactive and can be
+  //accessed in a function inside another function
+  searchJobs({occupation: queryDetails.occupation, jobLocation: queryDetails.jobLocation}).then((response) => {
+    console.log(response);
+  }) 
+  console.log(queryDetails.occupation);
+  console.log(queryDetails.jobLocation);
+
+}
+
+
 
 const handleSignOut = async () => {
   await auth.signOut();

@@ -29,7 +29,7 @@ async function searchJobs({occupation, jobLocation}) {
       'Content-Type': 'application/json'
     }
   });
-
+  return response
   console.log(response.data.jobs);
 }
 
