@@ -21,64 +21,13 @@
     </div>
     <div id="jobs">
       <div id="feed">
-        <h3>Job Feed</h3>
-              <div id="individual-cards">
-                <h4>Company Title</h4>
-                <h4>Job Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium doloremque voluptas illum veniam autem iure vel inventore dignissimos numquam perspiciatis ratione 
-                atque reprehenderit voluptatem minus iusto, tempora aperiam velit assumenda?
-                </p>
-                <button id="apply">Apply</button>
-              </div>
-              <div id="individual-cards">
-                <h4>Company Title</h4>
-                <h4>Job Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium doloremque voluptas illum veniam autem iure vel inventore dignissimos numquam perspiciatis ratione 
-                atque reprehenderit voluptatem minus iusto, tempora aperiam velit assumenda?
-                </p>
-                <button id="apply">Apply</button>
-              </div>
-              <div id="individual-cards">
-                <h4>Company Title</h4>
-                <h4>Job Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium doloremque voluptas illum veniam autem iure vel inventore dignissimos numquam perspiciatis ratione 
-                atque reprehenderit voluptatem minus iusto, tempora aperiam velit assumenda?
-                </p>
-                <button id="apply">Apply</button>
-              </div>
-              <div id="individual-cards">
-                <h4>Company Title</h4>
-                <h4>Job Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium doloremque voluptas illum veniam autem iure vel inventore dignissimos numquam perspiciatis ratione 
-                atque reprehenderit voluptatem minus iusto, tempora aperiam velit assumenda?
-                </p>
-                <button id="apply">Apply</button>
-              </div>
-              <div id="individual-cards">
-                <h4>Company Title</h4>
-                <h4>Job Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium doloremque voluptas illum veniam autem iure vel inventore dignissimos numquam perspiciatis ratione 
-                atque reprehenderit voluptatem minus iusto, tempora aperiam velit assumenda?
-                </p>
-                <button id="apply">Apply</button>
-              </div>
-          </div>
-      <div id="details">
-        <h3>Details </h3>
-        <h4>Company Title</h4>
-        <h4>Job title</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quisquam tempore rem optio magni saepe, 
-        atque a provident veritatis dolores sit omnis fugit blanditiis nihil tempora dignissimos distinctio quia ratione!
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, ad reiciendis cupiditate eius dolor voluptate at quaerat veritatis, 
-        doloribus corrupti nisi officia in minima est pariatur necessitatibus accusamus nostrum. Corporis!</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi omnis porro, veritatis earum, accusantium dignissimos sapiente sit eius,
-         harum debitis consectetur et? Laudantium debitis nemo aperiam quidem incidunt sed cupiditate.</p>
+        <div id="individual-cards" v-for="job in results.jobs" :key="job.id">
+            <h3>{{ job.title }}</h3>
+            <h3>{{ job.company.display_name }}</h3>
+            <p>{{ job.location.display_name }}</p>
+            <p> {{ job.description }}</p>
+            <button id="apply" @click="visitJob(job.redirect_url)">Apply</button>
+        </div>  
       </div>
     </div>
     <hr style="color: black;">
@@ -101,18 +50,23 @@ const router = useRouter();
 
 const queryDetails = reactive({
   occupation: "",
-  jobLocation: "",
+  jobLocation: ""
 });
+
+const results = reactive({
+  jobs: [],
+})
 
 const search = () => {
   //we can pass queryDetails inside function searchJobs without passing it inside search as queryDetails is reactive and can be
   //accessed in a function inside another function
-  getTheJobs({occupation: queryDetails.occupation, jobLocation: queryDetails.jobLocation}).then((response) => {
-    console.log(response);
+  getTheJobs({occupation: queryDetails.occupation, jobLocation: queryDetails.jobLocation})
+  .then((response) => {
+    console.log( 'responses are', response);
+    results.jobs = response
+    // results.jobs = results.jobs.json()
+    console.log(results.jobs);
   }) 
-  console.log(queryDetails.occupation);
-  console.log(queryDetails.jobLocation);
-
 }
 
 
@@ -121,6 +75,10 @@ const handleSignOut = async () => {
   await auth.signOut();
   router.push("/");
 };
+
+const visitJob = (url) => {
+  window.open(url, '_blank').focus();
+}
 </script>
 
 <style scoped>
@@ -194,7 +152,7 @@ label{
 
 #jobs{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   text-align: center;
   justify-items: center;
   justify-content: center;
@@ -204,10 +162,12 @@ label{
 #individual-cards{
   display: grid;
   box-shadow: 0 4px 8px 0 grey;
-  background-color: red;
+  /* background-color: red; */
   border-radius: 10px;
-  width: 40vw;
+  width: 80vw;
   text-align: left;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 #details{
