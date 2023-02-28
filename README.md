@@ -8,10 +8,16 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 ## Sign-in Page
 
-![image](https://user-images.githubusercontent.com/50962236/213134605-98e8f57d-e07c-4b45-aac7-dbd1180c9e6b.png)
-
+![image](https://user-images.githubusercontent.com/50962236/221869148-e40e54c4-b477-42ff-890a-101fce3748ff.png)
 
 ## Register page
 
-![image](https://user-images.githubusercontent.com/50962236/213134681-23355891-fa53-4f1e-b023-5a34a2508e0a.png)
+![image](https://user-images.githubusercontent.com/50962236/221869226-ecb736da-a5cb-4562-982a-9b83959489ee.png)
+
+## Search results
+
+![image](https://user-images.githubusercontent.com/50962236/221868973-0338678e-802c-4a66-91ba-544640fa8d51.png)
+
+![image](https://user-images.githubusercontent.com/50962236/221869045-23ae8cac-1969-443e-ac11-592f208a3df0.png)
+
 
