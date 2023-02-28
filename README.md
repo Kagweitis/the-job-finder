@@ -6,6 +6,13 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
+##Setting up Backend Server
+
+  1. navigate to the API directory and open terminal.
+  2. type node index.js
+  3. the message "proxy server listening on port 3000!" will be seen.
+  4. The Web App is ready for use!!!
+
 ## Sign-in Page
 
 ![image](https://user-images.githubusercontent.com/50962236/221869148-e40e54c4-b477-42ff-890a-101fce3748ff.png)
